@@ -1,1 +1,139 @@
 
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Heart ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #1a002b, #59003d, #1a002b);
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.heart {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background: #ff176b;
+    transform: rotate(-45deg);
+    animation: heartbeat 1s infinite;
+    box-shadow: 0 0 35px #ff176b;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #ff176b;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: 50px;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: rotate(-45deg) scale(1);
+    }
+    50% {
+        transform: rotate(-45deg) scale(1.2);
+    }
+}
+
+h1 {
+    margin-top: 85px;
+    color: #ffb6d5;
+    text-shadow: 0 0 15px #ff176b;
+    font-size: 28px;
+}
+
+p {
+    margin-top: 15px;
+    color: white;
+    font-size: 17px;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #ff176b;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -30px;
+    color: #ff9ac7;
+    font-size: 24px;
+    animation: floatUp 5s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="heart"></div>
+
+<h1>Made with Love ❤️</h1>
+<p id="message">หัวใจดวงนี้มอบให้เธอ</p>
+
+<button onclick="showLove()">กดรับหัวใจ 💌</button>
+
+<script>
+function showLove() {
+    document.getElementById("message").textContent =
+        "ขอให้วันนี้เป็นวันที่ดีของเธอ ❤️";
+
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.textContent = "♥";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration =
+            (3 + Math.random() * 3) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }
+}
+</script>
+
+</body>
+</html>
+
